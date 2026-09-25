@@ -6,7 +6,7 @@ from flask import Flask
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, filters, ContextTypes
 
-TOKEN = os.environ.get('8721152284:AAGHn4WLqjFUKP-WKmcSYLWFVCX5-CqcFcU')
+TOKEN = os.environ.get('TELEGRAM_BOT_TOKEN')
 
 
 async def send_with_typing(update, text, delay=1.5):
