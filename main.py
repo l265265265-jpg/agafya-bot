@@ -74,9 +74,17 @@ def health_check():
     return 'Bot is running', 200
 
 
-if __name__ == '__main__':
-    bot_thread = Thread(target=run_bot)
-    bot_thread.start()
-
+def run_web():
+    """Запускает Flask-сервер в отдельном потоке."""
     port = int(os.environ.get('PORT', 5000))
     web_app.run(host='0.0.0.0', port=port)
+
+
+if __name__ == '__main__':
+    # Flask — в отдельном потоке
+    web_thread = Thread(target=run_web)
+    web_thread.daemon = True
+    web_thread.start()
+
+    # Бот — в главном потоке (так надо для Telegram)
+    run_bot()
